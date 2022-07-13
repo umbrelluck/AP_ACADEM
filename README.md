@@ -41,7 +41,7 @@ After setting python environment, let`s set up alembic
 alembic init migrations
 ```
 
-In `alembic.ini` find `sqlalchemy.url` and set it to desiarable path (for simplicity lei it be `sqlite:///database.db`).
+In `alembic.ini` find `sqlalchemy.url` and set it to desiarable path (for simplicity lei it be `sqlite:///database.db`). Do not forget to change path also in `app.py` in `app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'`.
 
 Now, in `migrations/env.py` find `target_metadata = None` and change it to
 
