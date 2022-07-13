@@ -1,0 +1,7 @@
+.vscode/
+migrations/
+alembic.ini
+database.db
+__pycache__/
+venv/
+.python-version

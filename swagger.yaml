@@ -1,0 +1,160 @@
+openapi: 3.0.0
+info:
+  title: Bank API
+  description: Академічна різниця Бориса Ярослава
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+  - url: http://localhost:8080/test-api
+paths:
+  /bank:
+    description: Account resource
+    get:
+      description: Get All Accounts Information
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/account_get"
+    post:
+      description: Create New Account Information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/account_post"
+      responses:
+        201:
+          description: Created new Account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/account_get"
+    delete:
+      description: Delete Every Entry In Table
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/account_get"
+              
+              
+  /bank/{accountID}:
+    description: Account resource
+    get:
+      description: Get Account Information
+      parameters:
+        - in: path
+          name: accountID
+          schema:
+            type: integer
+            example: 5
+          required: true
+          description: ID of account
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/account_get"
+        404:
+          description: ID not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                
+    put:
+      description: Updated Account Information
+      parameters:
+        - in: path
+          name: accountID
+          schema:
+            type: integer
+            example: 5
+          required: true
+          description: ID of account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/account_post"
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/account_get"
+        404:
+          description: ID not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                
+    delete:
+      description: Updated Account Information
+      parameters:
+        - in: path
+          name: accountID
+          schema:
+            type: integer
+            example: 5
+          required: true
+          description: ID of account
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/account_get"
+        404:
+          description: ID not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    
+      
+              
+components:
+  schemas:
+    account_post:
+      type: object
+      properties:
+        accountName:
+          type: string
+          example: "John"
+        accountWallet:
+          type: number
+          example: 256.25
+    account_get:
+      type: object
+      properties:
+        accountID:
+          type: integer
+          example: 5
+        accountName:
+          type: string
+          example: "John"
+        accountWallet:
+          type: number
+          example: 256.25
+    error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Index {accountID} not found"
+    
