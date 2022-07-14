@@ -16,8 +16,13 @@ class TestWithoutID(Resource):
 
     def post(self):
         args = parser.parse_args()
+
+        if args['accountName'] is None or args['accountWallet'] is None:
+            return make_response(jsonify({'message': 'Invalid parameters'}), 400)
+
         bankAccount = BankAccount(
             accountName=args['accountName'], accountWallet=args['accountWallet'])
+        
 
         if len(testData) == 0:
             bankAccount.accountID = 1

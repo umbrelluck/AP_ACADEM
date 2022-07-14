@@ -34,6 +34,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/account_get"
+        400:
+          description: Invalid Parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid parameters"
     delete:
       description: Delete Every Entry In Table
       responses:
