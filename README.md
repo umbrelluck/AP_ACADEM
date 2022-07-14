@@ -15,6 +15,11 @@ git clone https://github.com/umbrelluck/AP_ACADEM.git
 Then set up python environment
 
 ```bash
+# get specific python version
+pyenv install 3.8.9
+# set specific version for usage in virtual environment
+pyenv local 3.8.9
+
 # create virtual environment
 python -m venv .venv
 
@@ -25,11 +30,6 @@ venv\Scripts\activate.bat
 venv\Scripts\Activate.ps1
 # Linux and MacOS
 $ source myvenv/bin/activate
-
-# get specific python version
-pyenv install 3.8.9
-# set specific version for usage in virtual environment
-pyenv local 3.8.9
 
 python -m pip install -r requirements.txt
 ```
